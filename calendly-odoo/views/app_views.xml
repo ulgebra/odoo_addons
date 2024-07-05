@@ -1,0 +1,181 @@
+<odoo>
+  <data>
+
+
+
+    <!-- Iframe Popup View -->
+    <record id="iframe_model_form" model="ir.ui.view">
+        <field name="name">calendly.iframe.model.form</field>
+        <field name="model">calendly.iframe.model</field>
+        <field name="arch" type="xml">
+            <form string="Iframe Model Form">
+                <sheet>
+                    <group>
+                       <field name="name" invisible="1" />
+                       <field name="description" invisible="1" />
+                       <field name="dynamic_fields" style="width: 738px;overflow:hidden;" nolabel="1" widget="html" options="{'no_label': True}" />
+                    </group>
+                </sheet>
+                <footer> </footer>
+            </form>
+        </field>
+    </record>
+   
+
+    <!-- Single form view button action -->
+    <record id="action_view_detail_form" model="ir.actions.act_window">
+        <field name="name">New Calendly Event </field>
+        <field name="res_model">calendly.iframe.model</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="iframe_model_form"/>
+        <field name="target">new</field>
+        <field name="context">{'active_id': active_id}</field>
+    </record>
+
+    <!-- Contact Detail Form -->
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <div name="button_box" position="inside">
+                    <button name="%(action_view_detail_form)d" string="New Calendly Event" type="action" class="sms_form_send_button oe_highlight"/>
+                </div>
+            </data>
+        </field>
+    </record>
+    
+   
+    <!-- Set Send button in Contacts List View -->
+    <record id="res_partner_view_tree" model="ir.ui.view">
+        <field name="name">res.partner.tree.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+             <xpath expr="//tree" position="inside">
+                    <button name="%(action_view_detail_form)d" string="New Calendly Event" type="action" class="sms_form_Event_button oe_highlight"/>
+              </xpath>
+        </field>
+    </record>
+
+    <!-- Set Send button in Leads List View -->
+    <record id="leads_list_view" model="ir.ui.view">
+            <field name="name">crm.lead.tree.action</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+            <field name="arch" type="xml">
+                <!-- Add a custom action in the action dropdown menu -->
+               <xpath expr="//tree" position="inside">
+                    <button name="%(action_view_detail_form)d" string="New Calendly Event" type="action" class="sms_form_Event_button oe_highlight"/>
+                </xpath>
+            </field>
+    </record>
+
+    <!-- Set Send button in Leads Opp List View -->
+   <record id="leads_opport_list_view" model="ir.ui.view">
+        <field name="name">crm.lead.tree.opportunity.inherit.sms</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <button name="%(action_view_detail_form)d" string="New Calendly Event" type="action" class="sms_form_Event_button oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Set Event button in Leads Form View -->
+    <record id="crm_reveal_lead_opportunity_form" model="ir.ui.view">
+        <field name="name">crm.lead.inherited.crm</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                 <button name="%(action_view_detail_form)d" type="action" class="oe_highlight sms_form_send_button" string="New Calendly Event" />
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- Open action Calendly history module List view   -->
+    <record model="ir.actions.act_window" id="calendly_history">
+        <field name="name">Calendly History</field>
+        <field name="res_model">calendly.history</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+  
+   <!-- Open action Contacts module List view   -->
+    <record model="ir.actions.act_window" id="contacts_page">
+        <field name="name">Contacts</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Open action for Leads module List view   -->
+    <record model="ir.actions.act_window" id="crm_page">
+        <field name="name">Leads</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--  Calendly history Details view   -->
+    <record id="view_form_calendly_history" model="ir.ui.view">
+        <field name="name">calendly.history.form</field>
+        <field name="model">calendly.history</field>
+        <field name="arch" type="xml">
+            <form string="Calendly History" create="false">
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="model_name" readonly="1"/>
+                        <field name="Start_Time" readonly="1"/>
+                        <field name="End_Time" readonly="1"/>
+                        
+                        <field name="Invitee_Email" readonly="1"/>
+                        <field name="Assignee_Email"/>
+                        <field name="Guest_Emails"/>
+                        <field name="Contact_Number" readonly="1"/>
+                        <field name="Invitee_Timezone" readonly="1"/>
+                        <field name="Event_Type" readonly="1"/>
+                        <field name="Location"/>
+                        <field name="Cancel_URL" readonly="1"/>
+                        <field name="Reschedule_URL" readonly="1"/>
+                        <field name="timestamp" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="calendlyhistorylog_view">
+        <field name="name">calendly.history.list</field>
+        <field name="model">calendly.history</field>
+        <field name="arch" type="xml">
+          <tree create="false">
+                <field name="name" readonly="1"/>
+                <field name="model_name" readonly="1"/>
+                <field name="Start_Time" readonly="1"/>
+                <field name="End_Time" readonly="1"/>
+                
+                <field name="Invitee_Email" readonly="1"/>
+                <field name="Assignee_Email"/>
+                <field name="Contact_Number" readonly="1"/>
+                <field name="Event_Type" readonly="1"/>
+                <field name="Location"/>
+                <field name="timestamp" readonly="1"/>
+          </tree>
+        </field>
+      </record>
+
+    
+    <!-- Menu bar-->
+    <menuitem name="Calendly Events" id="calendly_menu_root" groups="base.group_user"/>
+    <!-- Menu items -->
+    
+    <menuitem name="Book Events" id="calendly_menu_2" parent="calendly_menu_root"/>
+    <menuitem name="Calendly History" id="calendly_menu_1" parent="calendly_menu_root" action="calendly_history"/>
+    <!-- Sub Menu -->
+    <menuitem name="Contacts" id="contactItem" parent="calendly_menu_2" action="contacts_page"/>
+    <menuitem name="Leads" id="leadItem" parent="calendly_menu_2" action="crm_page"/>
+
+  </data>
+</odoo>

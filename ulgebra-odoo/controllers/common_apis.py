@@ -89,7 +89,7 @@ class SAASAPIS(http.Controller):
         server_domain = server_url.replace('https://','').replace('http://','').replace('/','')
 
         parentHtmlPage = f"""
-                             <iframe id='app-iframe' src='http://localhost:5003/app?appCode={appCode}&disableSAASSdk=true&force-ui-view=MESSAGE_FORM&entityId={entityIds}&module={model_string_name}&api_domain={server_domain}' style='width: 100%;height: 100%;border:0px'> </iframe> </div>
+                             <iframe id='app-iframe' src='https://sms.ulgebra.com/app?appCode={appCode}&disableSAASSdk=true&force-ui-view=MESSAGE_FORM&entityId={entityIds}&module={model_string_name}&api_domain={server_domain}' style='width: 100%;height: 100%;border:0px'> </iframe> </div>
                              <script src="/ulgebra-odoo/static/src/js/iframe-ui.js"></script>
                             """
         return parentHtmlPage

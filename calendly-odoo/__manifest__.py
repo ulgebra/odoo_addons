@@ -4,7 +4,7 @@
 
     'summary': "Calendly Events by Ulgebra",
 
-    'description': "Long description of module's purpose",
+    'description': "Calendly is a cloud-based appointment scheduling software that enables owners to manage their online appointments. The application Calendly Events for Odoo helps manage appointments with clients online and provides a real-time update regarding the appointments inside the CRM itself",
 
     'author': "Ulgebra",
 

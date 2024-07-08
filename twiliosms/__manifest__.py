@@ -4,7 +4,7 @@
 
     'summary': "Twilio SMS by Ulgebra",
 
-    'description': "Long description of module's purpose",
+    'description': "Connect with multiple contacts at once by sending Twilio messages using predefined message templates. Send media files such as images, videos and documents as attachments.Instantly send proactive messages to customers using the Twilio extension window which to avoid any delay in your communications. Stay up to date with the Twilio conversations with the help of real-time notifications and desktop notifications. Maintain the record of all Twilio conversations held and view complete chats whenever required",
 
     'author': "Ulgebra",
 

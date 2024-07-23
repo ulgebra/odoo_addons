@@ -1,2 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_calendly_history_all,access.calendly.history.user,model_calendly_history,base.group_user,1,1,1,1

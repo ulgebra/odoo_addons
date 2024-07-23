@@ -1,21 +1,8 @@
 <odoo>
   <data>
 
-    <!-- Contact Detail Form -->
-    <record id="view_partner_form" model="ir.ui.view">
-        <field name="name">res.partner.form</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="arch" type="xml">
-            <data>
-                    <div name="button_box" position="inside">
-                        <button name="%(action_custom_model_form)d" string="Send Twilio SMS" type="action" class="sms_form_send_button oe_highlight"/>
-                    </div>
-            </data>
-        </field>
-    </record>
 
-    <!-- Iframe Popup View -->
+<!-- Iframe Popup View -->
     <record id="view_custom_model_form" model="ir.ui.view">
         <field name="name">iframe.model.form</field>
         <field name="model">iframe.model</field>
@@ -32,7 +19,7 @@
             </form>
         </field>
     </record>
-
+    
     <!-- Single form view button action -->
     <record id="action_custom_model_form" model="ir.actions.act_window">
         <field name="name">Send Twilio SMS </field>
@@ -43,6 +30,23 @@
         <field name="context">{'active_id': active_id, 'appCode': 'twilioforodoocrm'}</field>
     </record>
 
+
+    <!-- Contact Detail Form -->
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <data>
+                    <div name="button_box" position="inside">
+                        <button name="%(action_custom_model_form)d" string="Send Twilio SMS" type="action" class="sms_form_send_button oe_highlight"/>
+                    </div>
+            </data>
+        </field>
+    </record>
+
+    
+    
     <!-- Open Selected Records Action . Open in popup -->
     <record id="open_selected_records" model="ir.actions.act_window">
         <field name="name">Send Twilio SMS</field>

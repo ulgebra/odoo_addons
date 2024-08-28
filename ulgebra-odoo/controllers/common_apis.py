@@ -103,13 +103,15 @@ class SAASAPIS(http.Controller):
 
         if access_token.startswith('Bearer '):
             access_token = access_token[7:]
-
-        user_id = request.env["res.users.apikeys"]._check_credentials(scope='odoo.plugin.outlook', key=access_token)
+        print(access_token)
+        user_id = request.env["res.users.apikeys"]._check_credentials(scope='odoo.plugin.outlook', key=access_token) or False
+        if not user_id:
+            return json.dumps({'status': 'error', 'message': 'User not found'})
+        
         user = request.env['res.users'].sudo().browse(int(user_id))
        
         user_data = self._filter_fields_by_type(user.read()[0])
-        if not user_id:
-            return json.dumps({'status': 'error', 'message': 'User not found'})
+       
         return json.dumps({'status': 'success', 'user': user_data, 'test': 1})
 
 
@@ -188,12 +190,12 @@ class SAASAPIS(http.Controller):
         return json.dumps({'status': 'success', 'users': user_data, 'meta' : {'nextOffset': str(offset + limit) }})
 
    
-    @http.route('/ulgebra-odoo/create_history_record', type='http', auth='public', methods=['POST'], csrf=False)
+    @http.route('/ulgebra-odoo/create_history_log', type='http', auth='public', methods=['POST'], csrf=False)
     def create_history_record(self, **kwargs):
         if not self.checkAuthorization():
             return json.dumps( {'message': "UnAuthorized", 'error': True })
         
-        model_string_name = request.params.get('model')
+        model_string_name = request.params.get('model_name')
         model = self.modelStringNameMap[model_string_name]
         access_token = request.httprequest.headers.get('Authorization')
         if not access_token:

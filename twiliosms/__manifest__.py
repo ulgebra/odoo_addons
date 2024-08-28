@@ -18,7 +18,7 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base','crm', 'ulgebra-odoo'],
-    'images': ['static/description/logo.png'],
+    'images': ['static/description/app_ui.png'],
     # always loaded
     'data': [
         'security/ir.model.access.csv',

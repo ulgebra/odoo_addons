@@ -2,7 +2,7 @@
 {
     'name': "Twilio SMS",
 
-    'summary': "Twilio SMS by Ulgebra. Send SMS, Manage SMS and Sync Incoming messages to CRM modules as records",
+    'summary': "Twilio SMS by Ulgebra. Send SMS, Manage SMS History and Sync Incoming messages to CRM modules as records",
 
     'description': """Connect with multiple contacts at once by sending Twilio messages using predefined message templates. Send media files such as images, videos and documents as attachments.Instantly send proactive messages to customers using the Twilio extension window which to avoid any delay in your communications. Stay up to date with the Twilio conversations with the help of real-time notifications and desktop notifications. Maintain the record of all Twilio conversations held and view complete chats whenever required. You can also reach out to us for this integration setup. 
     Need more apps or assistance? Visit our website or contact our support team for live help at https://sms.ulgebra.com. """,
